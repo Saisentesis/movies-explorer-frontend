@@ -7,14 +7,14 @@ import Portfolio from '../../components/Portfolio/Portfolio';
 
 const Main = () => {
   return (
-  <>
-    <Promo/>
-    <NavTab/>
-    <AboutProject/>
-    <Techs/>
-    <AboutMe/>
-    <Portfolio/>
-  </>
+    <main>
+      <Promo />
+      <NavTab />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+    </main>
   )
 }
 

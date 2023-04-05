@@ -102,6 +102,30 @@
   width: 100%;
 }
 
+@media screen and (max-width: 1100px) {
+  .about-project__subtitle {
+    max-width: 400px;
+    margin: 0 0 22px;
+  }
+
+  .about-project__text {
+    max-width: 400px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .about-project__subtitle {
+    max-width: 319px;
+  }
+
+  .about-project__text {
+    max-width: 319px;
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .about-project {
     width: 87%;
@@ -113,18 +137,6 @@
 
   .about-project__article {
     margin: 70px 0 93px;
-  }
-
-  .about-project__subtitle {
-    max-width: 319px;
-    margin: 0 0 22px;
-  }
-
-  .about-project__text {
-    max-width: 319px;
-    font-size: 12px;
-    line-height: 1.5;
-    margin: 0;
   }
 
   .about-project__period {

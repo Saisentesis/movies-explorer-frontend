@@ -1,6 +1,8 @@
 .movies-cardlist {
   display: grid;
   justify-content: center;
+  list-style: none;
+  padding: 0;
   margin: 70px auto 28px;
   max-width: 1140px;
   width: 100%;

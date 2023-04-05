@@ -21,6 +21,11 @@
   line-height: 1.23;
   text-decoration-line: underline;
   color: #FFFFFF;
+  transition: opacity 0.5s linear;
+}
+
+.navtab__link:hover {
+  opacity: 0.7;
 }
 
 .navtab__link:last-child {

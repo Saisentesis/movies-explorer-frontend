@@ -3,11 +3,12 @@ import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 import MoreButton from '../../components/MoreButton/MoreButton';
 
 const Movies = () => {
-  return (<>
+  return (
+    <main>
       <SearchForm />
       <MoviesCardList />
       <MoreButton />
-      </>
+    </main>
   )
 }
 

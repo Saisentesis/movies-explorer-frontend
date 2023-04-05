@@ -2,7 +2,7 @@ import './SearchCheckbox.css';
 import { useState } from 'react';
 
 const SearchCheckbox = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
 
   function handleChange() {
     setIsChecked(!isChecked);

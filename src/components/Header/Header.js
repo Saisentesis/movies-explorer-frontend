@@ -15,8 +15,8 @@ const Header = () => {
 
   return (
     <>
-      <header className={currentUrl === "/" ? "header" : "header__authorized"}>
-        <img className="header__logo" src={logoPath} alt="логотип" />
+      <header className={currentUrl === "/" ? "header" : "header header__authorized"}>
+      <NavLink to="/" className="header__link"><img className="header__logo" src={logoPath} alt="логотип" /></NavLink>
         {
           !isLoggedIn ?
             <nav className="header__links">

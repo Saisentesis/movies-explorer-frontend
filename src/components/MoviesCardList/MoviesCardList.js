@@ -9,9 +9,9 @@ const MoviesCardList = () => {
   }
 
   return (
-  <section className="movies-cardlist">
+  <ul className="movies-cardlist">
      {arr}
-  </section>
+  </ul>
   )
 }
 

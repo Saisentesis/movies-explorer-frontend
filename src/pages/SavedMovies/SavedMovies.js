@@ -2,10 +2,11 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 
 const SavedMovies = () => {
-  return (<>
+  return (
+    <main>
       <SearchForm />
       <MoviesCardList />
-      </>
+    </main>
   )
 }
 
