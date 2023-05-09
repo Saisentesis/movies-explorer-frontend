@@ -1,12 +1,13 @@
+import './Header.css';
 import logoPath from '../../images/logo.svg';
 import accountImagePath from '../../images/header-account-image.svg';
+import useAuthContext from '../../hooks/useAuthContext';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import './Header.css';
 
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { user } = useAuthContext();
   const currentUrl = useLocation().pathname;
 
   function handleChangeCheckboxValue(e) {
@@ -18,7 +19,7 @@ const Header = () => {
       <header className={currentUrl === "/" ? "header" : "header header__authorized"}>
       <NavLink to="/" className="header__link"><img className="header__logo" src={logoPath} alt="логотип" /></NavLink>
         {
-          !isLoggedIn ?
+          !user ?
             <nav className="header__links">
               <NavLink to="/signup" className="header__signup">Регистрация</NavLink>
               <NavLink to="/signin" className="header__signin">Войти</NavLink>
@@ -26,9 +27,9 @@ const Header = () => {
             : 
             <>
               <nav className="header__links-authorized">
-                <NavLink to="/movies" className="header__movies">Фильмы</NavLink>
-                <NavLink to="/saved-movies" className="header__saved-movies">Сохраненные фильмы</NavLink>
-                <NavLink to="/profile" className="header__account">Аккаунт
+                <NavLink to="/movies" className={({isActive}) => `header__movies ${isActive ? "header__link_active" : ""}`}>Фильмы</NavLink>
+                <NavLink to="/saved-movies" className={({isActive}) => `header__saved-movies ${isActive ? "header__link_active" : ""}`}>Сохраненные фильмы</NavLink>
+                <NavLink to="/profile" className={({isActive}) => `header__account ${isActive ? "header__link_active" : ""}`}>Аккаунт
                   <img className="header__account-image" alt="иконка аккаунта" src={accountImagePath}></img>
                 </NavLink>
               </nav>

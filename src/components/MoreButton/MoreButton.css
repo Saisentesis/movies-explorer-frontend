@@ -17,6 +17,10 @@
   color: #FFF;
 }
 
+.more__button:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 767px) {
   .more__button {
     width: 240px;

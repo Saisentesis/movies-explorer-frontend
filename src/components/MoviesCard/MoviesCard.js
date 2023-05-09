@@ -1,24 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './MoviesCard.css';
 import likeImg from '../../images/button-liked.svg';
 
 const MoviesCard = (props) => {
-  const [isLiked, setIsLiked] = useState(true);
+  const [id, setId] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  
+  useEffect(() => {
+    setIsLiked(false);
+    if (props.savedMovies) {
+      props.savedMovies.forEach((savedMovie) => {
+        if (savedMovie.movieId === props.card.id) {
+          setIsLiked(true);
+          setId(savedMovie._id);
+        }
+      })
+    } else {
+      setIsLiked(true);
+    }
+  }, [props.savedMovies]);
 
   const toggleLike = () => {
-    isLiked ? setIsLiked(false) : setIsLiked(true);
-  }
+    isLiked ? props.handleDelete(id||props.card._id) : props.handleSave(props.card);
+  };
 
   return (
     <li className="movies-card">
-     <img className="movies-card__image" src={props.image} alt={props.title}></img>
-      <div className="movies-card__caption">
-        <p className="movies-card__title">{props.title}</p>
-        <p className="movies-card__duration">{props.duration}</p>
-      </div>
-      <img className={`movies-card__like`+ (isLiked ? "" : " movies-card__like_visible")} src={likeImg} alt="значок лайка"></img>
-      {isLiked && <button type="button" className="movies-card__like-button" onClick={toggleLike}></button>}
-      {!isLiked && <button type="button" className="movies-card__remove-like-button" onClick={toggleLike}></button>}  
+      <a href={props.trailerLink} target="_blank" rel="noreferrer" className="movies-card__link">
+        <img className="movies-card__image" src={props.card.image} alt={props.card.description}></img>
+        <div className="movies-card__caption">
+          <p className="movies-card__title">{props.card.nameRU}</p>
+          <p className="movies-card__duration">{props.card.duration/60>=0 ? Math.floor(props.card.duration/60) +'ч '+ props.card.duration%60 +'м' : props.card.duration%60 + 'м'}</p>
+        </div>
+      </a>
+      {isLiked && <img className="movies-card__like" src={likeImg} alt="значок лайка"></img>}
+      {!isLiked && <button type="button" className="movies-card__like-button" onClick={toggleLike}></button>}
+      {isLiked && <button type="button" className="movies-card__remove-like-button" onClick={toggleLike}></button>}
     </li>
   )
 }
