@@ -1,9 +1,9 @@
 import './MoreButton.css';
 
-const MoreButton = () => {
+const MoreButton = (props) => {
   return (
     <section className="more">
-      <button type="button" className="more__button">Еще</button>
+      <button type="button" className="more__button" onClick={props.onClick}>Еще</button>
     </section>
   )
 }

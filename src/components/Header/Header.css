@@ -127,6 +127,10 @@
   opacity: 0.7;
 }
 
+.header__link_active {
+  color: #3DDC84;
+}
+
 .header__signin {
   font-style: normal;
   font-weight: 500;
