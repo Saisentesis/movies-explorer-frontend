@@ -6,6 +6,7 @@ import MoreButton from '../../components/MoreButton/MoreButton';
 import Preloader from '../../components/Preloader/Preloader';
 import MoviesApi from '../../utils/MoviesApi';
 import MainApi from '../../utils/MainApi';
+import { width, startFilmsCount, addMoreMoviesMaxValue, addMoreMoviesMinValue, shortMovieDuration } from '../../utils/constants';
 import { useState, useEffect } from 'react';
 
 const Movies = () => {
@@ -20,23 +21,23 @@ const Movies = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-      setIsLoading(true);
-      setIsError(false);
-      Promise.all([
-        MoviesApi.getCards(),
-        MainApi.getCards()
-      ])
-        .then((value) => {
-          let [moviesApiMovies, mainApiMovies] = value;
-          moviesApiMovies = moviesApiMovies.map((movie) => {
-            movie.image = "https://api.nomoreparties.co" + movie.image.url;
-            return movie;
-          });
-          setAllMovies(moviesApiMovies);
-          setSavedMovies(mainApiMovies);
-        })
-        .catch(() => setIsError(true))
-        .finally(() => setIsLoading(false))
+    setIsLoading(true);
+    setIsError(false);
+    Promise.all([
+      MoviesApi.getCards(),
+      MainApi.getCards()
+    ])
+      .then((value) => {
+        let [moviesApiMovies, mainApiMovies] = value;
+        moviesApiMovies = moviesApiMovies.map((movie) => {
+          movie.image = "https://api.nomoreparties.co" + movie.image.url;
+          return movie;
+        });
+        setAllMovies(moviesApiMovies);
+        setSavedMovies(mainApiMovies);
+      })
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false))
   }, []);
 
   useEffect(() => {
@@ -51,14 +52,14 @@ const Movies = () => {
   useEffect(() => {
     const moviesStartCount = () => {
       switch (true) {
-        case window.innerWidth >= 769:
-          setStartMoviesCount(12);
+        case window.innerWidth >= width.max:
+          setStartMoviesCount(startFilmsCount.maxWidth);
           break;
-        case window.innerWidth >= 481:
-          setStartMoviesCount(8);
+        case window.innerWidth >= width.med:
+          setStartMoviesCount(startFilmsCount.medWidth);
           break;
-        case window.innerWidth >= 320:
-          setStartMoviesCount(5);
+        case window.innerWidth >= width.min:
+          setStartMoviesCount(startFilmsCount.minWidth);
           break;
         default:
       }
@@ -78,7 +79,7 @@ const Movies = () => {
     if (searchWord) {
       let films = allMovies.filter((movie) => movie.nameRU.toLowerCase().indexOf(searchWord.toLowerCase()) !== -1);
       if (checkbox) {
-        films = films.filter((movie) => movie.duration <= 40)
+        films = films.filter((movie) => movie.duration <= shortMovieDuration)
       }
       localStorage.setItem('filteredMovies', JSON.stringify(films));
       localStorage.setItem('shortFilmCheckbox', JSON.stringify(checkbox));
@@ -92,9 +93,9 @@ const Movies = () => {
       setCurrentMoviesCount(startMoviesCount);
     }
     if (startMoviesCount === 12) {
-      setCurrentMoviesCount(currentMoviesCount + 3);
+      setCurrentMoviesCount(currentMoviesCount + addMoreMoviesMaxValue);
     } else {
-      setCurrentMoviesCount(currentMoviesCount + 2);
+      setCurrentMoviesCount(currentMoviesCount + addMoreMoviesMinValue);
     }
   }
 

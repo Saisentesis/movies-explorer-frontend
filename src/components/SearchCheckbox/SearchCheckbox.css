@@ -11,7 +11,8 @@
 	justify-content: flex-end;
 	align-items: center;
 	position: relative;
-  margin: 0 auto 48px;
+  margin: 0 auto 0;
+	padding-bottom: 48px;
 	width: 174px;
 	height: 20px;
 }

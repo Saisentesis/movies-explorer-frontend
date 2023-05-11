@@ -17,7 +17,7 @@
 .movies-card__caption {
   display: flex;
   justify-content: space-between;
-  margin-top: 14px;
+  margin: 14px auto 0;
   width: 92%;
 }
 
