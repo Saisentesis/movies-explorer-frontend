@@ -58,7 +58,7 @@ const Register = () => {
           className="register__input"
           type="email"
           name="email"
-          pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+          pattern="[A-z0-9._%+-]+@[a-z0-9.-]+\.[A-z]{2,8}$"
           value={values.email || ''}
           onChange={handleChange}
           required

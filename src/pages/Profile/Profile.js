@@ -78,7 +78,7 @@ const Profile = () => {
             type="email"
             placeholder="E-mail"
             name="email"
-            pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+            pattern="[A-z0-9._%+-]+@[a-z0-9.-]+\.[A-z]{2,8}$"
             value={values.email}
             onChange={handleChange}
             required
