@@ -1,17 +1,16 @@
 import './SearchCheckbox.css';
-import { useState } from 'react';
 
-const SearchCheckbox = () => {
-  const [isChecked, setIsChecked] = useState(true);
-
+const SearchCheckbox = (props) => {
+  
   function handleChange() {
-    setIsChecked(!isChecked);
+    props.setShortFilmCheckbox(!props.shortFilmCheckbox);
+    props.handleSearch(!props.shortFilmCheckbox);
   }
 
   return (
-    <div className="search__tumbler">
-      <input type="checkbox" className="search__checkbox" id="search__checkbox" value={isChecked} onChange={handleChange}></input>
-      <label htmlFor="search__checkbox" className="search__label">Короткометражки</label>
+    <div className="search-tumbler">
+      <input type="checkbox" className="search-tumbler__checkbox" id="search-tumbler__checkbox" checked={props.shortFilmCheckbox} onChange={handleChange}></input>
+      <label htmlFor="search-tumbler__checkbox" className="search-tumbler__label">Короткометражки</label>
     </div>
   )
 }
