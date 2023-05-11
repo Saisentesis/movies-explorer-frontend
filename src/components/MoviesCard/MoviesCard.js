@@ -26,7 +26,7 @@ const MoviesCard = (props) => {
 
   return (
     <li className="movies-card">
-      <a href={props.trailerLink} target="_blank" rel="noreferrer" className="movies-card__link">
+      <a href={props.card.trailerLink} target="_blank" rel="noreferrer" className="movies-card__link">
         <img className="movies-card__image" src={props.card.image} alt={props.card.description}></img>
         <div className="movies-card__caption">
           <p className="movies-card__title">{props.card.nameRU}</p>
