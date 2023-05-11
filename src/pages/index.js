@@ -14,7 +14,7 @@ import useAuthContext from '../hooks/useAuthContext';
 import Preloader from '../components/Preloader/Preloader';
 
 const Routing = () => {
-  
+
   const SessionLayout = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { setUser } = useAuthContext();
@@ -40,34 +40,36 @@ const Routing = () => {
     if (isLoading) {
       return <Preloader></Preloader>
     }
-    return <Outlet/>
+    return <Outlet />
   }
 
-  const ProtectedRoute = ({auth=false, to="/signin"}) => {
-    const {user} = useAuthContext();
+  const ProtectedRoute = ({ auth = false, to = "/" }) => {
+    const { user } = useAuthContext();
     if (!user === auth) {
       return <Navigate to={to} />;
     }
-    return <Outlet/>;
+    return <Outlet />;
   };
 
   return (
     <Routes>
       <Route element={<SessionLayout />}>
         <Route element={<Header />}>
-        <Route element={<ProtectedRoute auth={true}/>}>
-          <Route path="/profile" element={<Profile />} />
+          <Route element={<ProtectedRoute auth={true} />}>
+            <Route path="/profile" element={<Profile />} />
           </Route>
           <Route element={<Footer />}>
             <Route path="/" element={<Main />} />
-            <Route element={<ProtectedRoute auth={true}/>}>
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/saved-movies" element={<SavedMovies />} />
+            <Route element={<ProtectedRoute auth={true} />}>
+              <Route path="/movies" element={<Movies />} />
+              <Route path="/saved-movies" element={<SavedMovies />} />
             </Route>
           </Route>
         </Route>
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
