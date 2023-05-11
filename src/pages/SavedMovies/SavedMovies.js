@@ -56,7 +56,6 @@ const SavedMovies = () => {
         handleSearch={handleSearch}
       />
       {isLoading && <Preloader />}
-      {filteredMovies.length === 0 && !isLoading && <p>Ничего не найдено</p>}
       {isError && <p>Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</p>}
       {filteredMovies.length > 0 && !isLoading && !isError &&
         <MoviesCardList
