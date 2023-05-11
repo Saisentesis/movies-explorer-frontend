@@ -1,7 +1,7 @@
 import './Register.css';
 import useAuthContext from '../../hooks/useAuthContext';
 import { useFormWithValidation } from '../../hooks/useForm';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import logoPath from '../../images/logo.svg';
 import MainApi from '../../utils/MainApi';
@@ -38,7 +38,7 @@ const Register = () => {
 
   return (
     <main className="register">
-      <img className="register__logo" src={logoPath} alt="логотип"></img>
+      <NavLink to="/"><img className="register__logo" src={logoPath} alt="логотип"></img></NavLink>
       <h1 className="register__title"> Добро пожаловать!</h1>
       <form className="register__form" onSubmit={onSubmit}>
         <p className="register__placeholder">Имя</p>

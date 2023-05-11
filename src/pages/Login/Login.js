@@ -3,7 +3,7 @@ import useAuthContext from '../../hooks/useAuthContext';
 import logoPath from '../../images/logo.svg';
 import MainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../../hooks/useForm';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { useState } from 'react';
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
 
   return (
     <main className="login">
-      <img className="login__logo" src={logoPath} alt="логотип"></img>
+      <NavLink to="/"><img className="login__logo" src={logoPath} alt="логотип"></img></NavLink>
       <h1 className="login__title">Рады видеть!</h1>
       <form className="login__form" onSubmit={onSubmit}>
         <p className="login__placeholder">E-mail</p>
