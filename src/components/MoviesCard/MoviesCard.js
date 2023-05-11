@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import likeImg from '../../images/button-liked.svg';
 
 const MoviesCard = (props) => {
+  const currentUrl = useLocation().pathname;
   const [id, setId] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  
+
+  console.log(currentUrl);
+
   useEffect(() => {
     setIsLiked(false);
     if (props.savedMovies) {
@@ -21,7 +25,7 @@ const MoviesCard = (props) => {
   }, [props.savedMovies]);
 
   const toggleLike = () => {
-    isLiked ? props.handleDelete(id||props.card._id) : props.handleSave(props.card);
+    isLiked ? props.handleDelete(id || props.card._id) : props.handleSave(props.card);
   };
 
   return (
@@ -30,10 +34,10 @@ const MoviesCard = (props) => {
         <img className="movies-card__image" src={props.card.image} alt={props.card.description}></img>
         <div className="movies-card__caption">
           <p className="movies-card__title">{props.card.nameRU}</p>
-          <p className="movies-card__duration">{props.card.duration/60>=0 ? Math.floor(props.card.duration/60) +'ч '+ props.card.duration%60 +'м' : props.card.duration%60 + 'м'}</p>
+          <p className="movies-card__duration">{props.card.duration / 60 >= 0 ? Math.floor(props.card.duration / 60) + 'ч ' + props.card.duration % 60 + 'м' : props.card.duration % 60 + 'м'}</p>
         </div>
       </a>
-      {isLiked && <img className="movies-card__like" src={likeImg} alt="значок лайка"></img>}
+      {isLiked && currentUrl === '/movies' && <img className="movies-card__like" src={likeImg} alt="значок лайка"></img>}
       {!isLiked && <button type="button" className="movies-card__like-button" onClick={toggleLike}></button>}
       {isLiked && <button type="button" className="movies-card__remove-like-button" onClick={toggleLike}></button>}
     </li>
